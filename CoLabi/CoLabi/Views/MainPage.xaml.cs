@@ -34,8 +34,7 @@ namespace CoLabi
                 await DisplayAlert("Success!", "You are connected to WiFi", "Ok");
                 foreach(var con in CrossConnectivity.Current.ConnectionTypes)
                 {
-                    var s = 123;
-                    CrossConnectivity.Current.
+
                     
                 }
                 
