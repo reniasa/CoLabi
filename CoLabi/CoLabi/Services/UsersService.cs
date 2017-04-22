@@ -1,4 +1,5 @@
 ﻿using CoLabi.Models;
+using Plugin.RestClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +10,10 @@ namespace CoLabi.Services
 {
     public class UsersService
     {
-        public IEnumerable<User> GetUsers()
+        public async Task<List<User>> GetUsers()
         {
-            return new List<User>
-            {
-                new User
-                {
-                    Name = "Jan Kowalski",
-                    Specialization = "Frezarki"
-                }
-            };
+            RestClient<User> restClient = new RestClient<User>();
+            return await restClient.GetAsync();
         }
     }
 }
