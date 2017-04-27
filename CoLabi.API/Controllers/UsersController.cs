@@ -14,7 +14,7 @@ namespace CoLabi.API.Controllers
 {
     public class UsersController : ApiController
     {
-        private UserContext db = new UserContext();
+        private Context db = new Context();
 
         // GET: api/Users
         public IQueryable<User> GetUsers()
