@@ -3,6 +3,8 @@ using CoLabi.ViewModels;
 using Xamarin.Forms;
 using Plugin.Connectivity;
 using Plugin.Connectivity.Abstractions;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace CoLabi
 {
@@ -16,7 +18,12 @@ namespace CoLabi
             {
                 Current_ConnectivityChanged(sender, args);
             };
+
         }
+
+
+
+
 
         private async void Current_ConnectivityChanged(object sender, ConnectivityChangedEventArgs args)
         {

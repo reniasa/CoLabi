@@ -7,13 +7,13 @@ namespace CoLabi.API.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class RefreshDatabase : IMigrationMetadata
+    public sealed partial class ContextDb : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RefreshDatabase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ContextDb));
         
         string IMigrationMetadata.Id
         {
-            get { return "201703121418018_AddUserModel"; }
+            get { return "201705220112240_ContextDb"; }
         }
         
         string IMigrationMetadata.Source

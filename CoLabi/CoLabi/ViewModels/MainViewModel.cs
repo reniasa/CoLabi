@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,18 @@ namespace CoLabi.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        public IEnumerable<User> _users;
+        private IEnumerable<User> _users;
+        private bool _isActive;
+
+        public bool IsActive {
+            get { return _isActive; }
+            set
+            {
+                _isActive = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public IEnumerable<User> Users {
             get { return _users; }
             set
@@ -24,7 +36,7 @@ namespace CoLabi.ViewModels
         }
 
         private UsersService _usersService;
-
+        private LocalService _localServer;
         public event PropertyChangedEventHandler PropertyChanged;
 
         public async Task InitializeAsync()
@@ -32,6 +44,7 @@ namespace CoLabi.ViewModels
             try
             {
                 Users = await new UsersService().GetUsers();
+                IsActive = await new LocalService().IsAccesible();
             }
             catch(Exception ex)
             {

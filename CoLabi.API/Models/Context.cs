@@ -15,7 +15,7 @@ namespace CoLabi.API.Models
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
     
-        public Context() : base("name=Context")
+        public Context() : base("Context")
         {
         }
 

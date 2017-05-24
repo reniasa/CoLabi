@@ -8,22 +8,8 @@
     <ViewModels:MainViewModel/>
   </TabbedPage.BindingContext>
     <ContentPage Title="Profile">
-      <ListView ItemsSource="{Binding Users}" HasUnevenRows="True">
-      <ListView.ItemTemplate>
-        <DataTemplate>
-          <ViewCell>
-            <StackLayout Orientation="Horizontal">
-              <Label Text="{Binding Name}"></Label>
-              <Label Text="{Binding Specialization}"></Label>
-            </StackLayout>
-          </ViewCell>
-        </DataTemplate>
-      </ListView.ItemTemplate>
-      </ListView>
-    </ContentPage>
-    <ContentPage Title="Settings">
-      <Label Text="Some settings"
-         VerticalOptions="Center"
-         HorizontalOptions="Center" />
+      <Grid>
+        
+      </Grid>
     </ContentPage>
 </TabbedPage>
