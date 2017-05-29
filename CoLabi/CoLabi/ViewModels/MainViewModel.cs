@@ -1,5 +1,7 @@
 ﻿using CoLabi.Models;
 using CoLabi.Services;
+using Plugin.Connectivity;
+using Plugin.Connectivity.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +11,8 @@ using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace CoLabi.ViewModels
 {
@@ -43,8 +47,13 @@ namespace CoLabi.ViewModels
         {
             try
             {
+                var embeddedImage = new Image { Aspect = Aspect.AspectFit };
+                embeddedImage.Source = ImageSource.FromResource("CoLabi.images.grayDot.png");
                 Users = await new UsersService().GetUsers();
-                IsActive = await new LocalService().IsAccesible();
+                CrossConnectivity.Current.ConnectivityChanged += (sender, args) =>
+                {
+                    Current_ConnectivityChanged(sender, args);
+                };
             }
             catch(Exception ex)
             {
@@ -53,10 +62,42 @@ namespace CoLabi.ViewModels
            
         }
 
+        private async void Current_ConnectivityChanged(object sender, ConnectivityChangedEventArgs args)
+        {
+            IsActive = await new LocalService().IsAccesible();
+            var user = await new UsersService().GetUser(1);
+            user.LastOnline = new DateTime();
+            await new UsersService().UpdateUserActivity(1, user);
+            await new UsersService().GetUsers();
+
+        }
+
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+    }
+
+
+}
+
+namespace CoLabi
+{
+    [ContentProperty("Source")]
+    public class ImageResourceExtension : IMarkupExtension
+    {
+        public string Source { get; set; }
+
+        public object ProvideValue(IServiceProvider serviceProvider)
+        {
+            if (Source == null)
+            {
+                return null;
+            }
+            var imageSource = ImageSource.FromResource(Source);
+
+            return imageSource;
+        }
     }
 }

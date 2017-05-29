@@ -107,8 +107,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="images\grayDot.png" />
-    <Content Include="images\greenDot.png" />
+    <EmbeddedResource Include="Images\grayDot.png" />
+    <EmbeddedResource Include="Images\greenDot.png" />
     <Content Include="PluginsHelp\ConnectivityReadme.txt" />
   </ItemGroup>
   <ItemGroup />

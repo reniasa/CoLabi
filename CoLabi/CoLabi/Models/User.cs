@@ -10,5 +10,6 @@ namespace CoLabi.Models
     {
         public string Name { get; set; }
         public string Specialization { get; set; }
+        public DateTime LastOnline { get; set; }
     }
 }

@@ -13,8 +13,8 @@ namespace Plugin.RestClient
     /// </summary>
     public class RestClient<T>
     {
-        private const string WebServiceUrl = "http://10.1.163.113:3000/api/Users/";
-
+        //private const string WebServiceUrl = "http://10.1.163.113:3000/api/Users/";
+        private const string WebServiceUrl = "http://10.5.112.108:3000/api/Users/";
         public async Task<List<T>> GetAsync()
         {
             var httpClient = new HttpClient();
@@ -22,6 +22,17 @@ namespace Plugin.RestClient
             var json = await httpClient.GetStringAsync(WebServiceUrl);
 
             var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
+
+            return taskModels;
+        }
+
+        public async Task<T> GetAsync(int id)
+        {
+            var httpClient = new HttpClient();
+
+            var json = await httpClient.GetStringAsync(WebServiceUrl + id);
+
+            var taskModels = JsonConvert.DeserializeObject<T>(json);
 
             return taskModels;
         }

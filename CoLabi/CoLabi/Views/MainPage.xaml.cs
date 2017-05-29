@@ -14,21 +14,6 @@ namespace CoLabi
         public MainPage()
         {
             InitializeComponent();
-            CrossConnectivity.Current.ConnectivityChanged += (sender, args) =>
-            {
-                Current_ConnectivityChanged(sender, args);
-            };
-
-        }
-
-
-
-
-
-        private async void Current_ConnectivityChanged(object sender, ConnectivityChangedEventArgs args)
-        {
-            await DisplayAlert("Connectivity Changed", "IsConnected: " + args.IsConnected.ToString(), "OK");
-            
         }
 
         protected override async void OnAppearing()

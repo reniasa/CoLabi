@@ -9,7 +9,31 @@
   </TabbedPage.BindingContext>
     <ContentPage Title="Profile">
       <Grid>
-        
+        <Grid.ColumnDefnitions>
+          <ColumnDefinition Width="1*"/>
+          <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefnitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="1*"/>
+          <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Users}" HasUnevenRows="True">
+          <ListView.ItemTemplate>
+            <DataTemplate>
+              <ViewCell>
+                <StackLayout Orientation="Horizontal">
+                  <Label Text="{Binding Name}"></Label>
+                  <Label Text="{Binding Specialization}"></Label>
+                </StackLayout>
+              </ViewCell>
+            </DataTemplate>
+          </ListView.ItemTemplate>
+        </ListView>
+      <StackLayout Grid.Row="1" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center">
+        <Label Text="Tutaj pomiedzy" />
+        <Image Source="{local:ImageResource CoLabi.Images.greenDot.png}" />
+        <Label Text="powinna byc nasza kropa" />
+      </StackLayout>
       </Grid>
     </ContentPage>
 </TabbedPage>
